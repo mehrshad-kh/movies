@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+# -e    exit the script in case any command fails
+# -u    exit in case of previously undefined variables being used
+# -o pipefail   exit if any portion of a pipe fails
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "usage: movies continue | download | init | link | play" >&2
+    exit 1
+fi
+
+if [[ $1 = "init" ]]; then
+    shift; ${0%/*}/movies.init.sh "$@"
+else
+    subcommands=(continue download link play)
+    for subcommand in ${subcommands[@]}; do
+        if [[ $1 == ${subcommand} ]]; then
+            if [[ ! -f .info ]]; then
+                echo "fatal: not a movie repository: .info" >&2
+                exit 1
+            else
+                shift; ${0%/*}/movies.${subcommand}.sh "$@"
+                break
+            fi
+        fi
+    done
+fi
+
+exit 0

@@ -5,13 +5,16 @@
 # -o pipefail   exit if any portion of a pipe fails
 set -euo pipefail
 
+# This is where actual scripts are located.
+movies_dir=${$(readlink -f ${0})%/*}
+
 if [ $# -eq 0 ]; then
     echo "usage: movies continue | download | init | link | play" >&2
     exit 1
 fi
 
 if [[ $1 = "init" ]]; then
-    shift; ${0%/*}/movies.init.sh "$@"
+    shift; ${movies_dir}/movies.init.sh "$@"
 else
     subcommands=(continue download link play)
     for subcommand in ${subcommands[@]}; do
@@ -20,7 +23,7 @@ else
                 echo "fatal: not a movie repository: .info" >&2
                 exit 1
             else
-                shift; ${0%/*}/movies.${subcommand}.sh "$@"
+                shift; ${movies_dir}/movies.${subcommand}.sh "$@"
                 break
             fi
         fi

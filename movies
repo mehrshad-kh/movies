@@ -13,10 +13,11 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+subcommand_found=-1
+subcommands=(continue download link play)
 if [[ $1 = "init" ]]; then
     shift; ${movies_dir}/movies.init.sh "$@"
 else
-    subcommands=(continue download link play)
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then
             if [[ ! -f .info ]]; then
@@ -28,6 +29,11 @@ else
             fi
         fi
     done
+fi
+
+if [[ ${subcommand_found} -ne 0 ]]; then
+    echo "usage: movies continue | download | init | link | play" >&2
+    exit 1
 fi
 
 exit 0

@@ -20,6 +20,7 @@ if [[ $1 = "init" ]]; then
 else
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then
+            subcommand_found=0
             if [[ ! -f .info ]]; then
                 echo "fatal: not a movie repository: .info" >&2
                 exit 1

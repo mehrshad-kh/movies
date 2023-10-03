@@ -20,4 +20,7 @@ else
     new_episode_link="$(echo ${first_episode_link} | rev | cut -d "/" -f 2- | rev)/${new_episode_filename}"
 fi
 
-curl -L -g -O --retry-all-errors --retry-max-time 120 ${new_episode_link}
+# -L, --location: Follow the request onto the last location.
+# -O, --remote-name: Write output to a local file named like the remote file we get.
+# -f, --fail: Fail silently.
+curl -L -O -f --retry-all-errors --retry-max-time 120 ${new_episode_link}

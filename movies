@@ -8,31 +8,31 @@ set -euo pipefail
 # This is where actual scripts are located.
 movies_dir=${$(readlink -f ${0})%/*}
 
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
     echo "usage: movies continue | download | init | link | play" >&2
     exit 1
 fi
 
-subcommand_found=-1
+subcommand_found="false"
 subcommands=(continue download link play)
 if [[ $1 = "init" ]]; then
     shift; ${movies_dir}/movies.init.sh "$@"
 else
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then
-            subcommand_found=0
+            subcommand_found="true"
             if [[ ! -f .info ]]; then
-                echo "fatal: not a movie repository: .info" >&2
+                >&2 echo "fatal: not a movie repository: .info"
                 exit 1
-            else
-                shift; ${movies_dir}/movies.${subcommand}.sh "$@"
-                break
             fi
+
+            shift; ${movies_dir}/movies.${subcommand}.sh "$@"
+            break
         fi
     done
 fi
 
-if [[ ${subcommand_found} -ne 0 ]]; then
+if [[ ${subcommand_found} == "fasle" ]]; then
     echo "usage: movies continue | download | init | link | play" >&2
     exit 1
 fi

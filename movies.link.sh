@@ -4,6 +4,8 @@ set -euo pipefail
 
 if [[ ! -h latest ]]; then
     >&2 echo "error: link to latest has not been created"
+    exit 1
+fi
 
 series_name="$(cat .info | grep -E "^name" | cut -d "=" -f 2 | xargs)"
 episode_name=$(ls ${series_name}* | sort | tail -n 1 | rev | cut -d "/" -f 1 | rev)

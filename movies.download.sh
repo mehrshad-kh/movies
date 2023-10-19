@@ -23,4 +23,4 @@ fi
 # -L, --location: Follow the request onto the last location.
 # -O, --remote-name: Write output to a local file named like the remote file we get.
 # -f, --fail: Fail silently.
-curl -C - -L -O -f --retry-all-errors --retry-max-time 120 ${new_episode_link}
+curl -C - -L -O -f --retry-all-errors --retry-max-time 30 ${new_episode_link}

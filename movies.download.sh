@@ -2,11 +2,18 @@
 
 set -euo pipefail
 
+if ! [[ $# -eq 1 && $1 == "next" ]]; then
+    >&2 echo "[invalid usage]"
+    echo "usage: movies download [next]"
+    exit 1
+fi
+
+
 if ! [[ -h latest ]]; then
     new_episode_link="$(cat .info | grep -E "^url" | cut -d "=" -f 2 | xargs)"
 else
     last_episode_filename=$(readlink latest)
-    # Problematic
+    # It's problematic.
     last_episode_number=$(echo ${last_episode_filename} | grep -oE "E\d{2}" | cut -c 2-3)
     # Arithmetic expansion
     new_episode_number=$(($last_episode_number + 1))

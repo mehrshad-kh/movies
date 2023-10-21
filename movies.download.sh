@@ -2,9 +2,10 @@
 
 set -euo pipefail
 
-if ! [[ $# -eq 1 && $1 == "next" ]]; then
+if [[ $# -eq 1 ]] && [[ $1 =~ "(-n|--next)" ]]; then
+else
     >&2 echo "[invalid usage]"
-    echo "usage: movies download [next]"
+    echo "usage: movies download [-n, --next]"
     exit 1
 fi
 

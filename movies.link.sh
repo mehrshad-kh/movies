@@ -7,7 +7,7 @@ if [[ ! -h latest ]]; then
     exit 1
 fi
 
-series_name="$(cat .info | grep -E "^name" | cut -d "=" -f 2 | xargs)"
+series_name="$(cat .info | grep -E "^name\s*=" | cut -d "=" -f 2 | xargs)"
 episode_name=$(ls ${series_name}* | sort | tail -n 1 | rev | cut -d "/" -f 1 | rev)
 
 case $# in

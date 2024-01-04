@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 set -euo pipefail
-set -x
 
 if [[ $# -eq 1 ]] && [[ $1 =~ "(-n|--next)" ]]; then
 else

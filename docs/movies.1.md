@@ -1,12 +1,14 @@
 % MOVIES(1) movies 0.1
+% Mehrshad Khansarian
+% 2582-10-22
 
 # NAME
 
-**movies** - download and watch your favorite TV shows
+movies - Download and watch your favorite TV shows
 
 # SYNOPSIS
 
-**movies continue | download | init | link | play [options]**
+_movies_ \<command\> [\<args\>]
 
 # DESCRIPTION
 

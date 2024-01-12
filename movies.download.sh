@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+latest=".movies/latest/"
+
 if [[ $# -eq 1 ]] && [[ $1 =~ "(-n|--next)" ]]; then
 else
     >&2 echo "[invalid usage]"
@@ -9,10 +11,10 @@ else
     exit 1
 fi
 
-if ! [[ -h latest ]]; then
+if ! [[ -h ${latest} ]]; then
     new_episode_link="$(cat .info | grep -E "^url" | cut -d "=" -f 2 | xargs)"
 else
-    last_episode_filename=$(readlink latest)
+    last_episode_filename=$(readlink ${latest})
 
     last_episode_number=$(echo ${last_episode_filename} | grep -oE "E\d{2}" | cut -c 2-3)
     # Arithmetic expansion

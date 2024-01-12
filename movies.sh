@@ -22,8 +22,8 @@ else
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then
             subcommand_found=1
-            if [[ ! -f .info ]]; then
-                >&2 echo "fatal: not a movies repository: .info"
+            if [[ ! -d .movies ]]; then
+                >&2 echo "fatal: not a movies repository: .movies"
                 exit 1
             fi
 

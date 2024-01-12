@@ -2,12 +2,15 @@
 
 set -euo pipefail
 
-if [[ ! -h latest ]]; then
+latest=".movies/latest"
+info=".movies/info"
+
+if [[ ! -h ${latest} ]]; then
     >&2 echo "error: link to latest has not been created"
     exit 1
 fi
 
-series_name="$(cat .info | grep -E "^name\s*=" | cut -d "=" -f 2 | xargs)"
+series_name="$(cat ${info} | grep -E "^name\s*=" | cut -d "=" -f 2 | xargs)"
 episode_name=$(ls ${series_name}* | sort | tail -n 1 | rev | cut -d "/" -f 1 | rev)
 
 case $# in
@@ -35,9 +38,9 @@ case $# in
                 fi
             fi
 
-            current_latest_episode_number=$(readlink latest | grep -oE "E[0-9]{2}" | cut -c 2-3)
+            current_latest_episode_number=$(readlink ${latest} | grep -oE "E[0-9]{2}" | cut -c 2-3)
             latest_episode_number=$((current_latest_episode_number + offset))
-            latest_episode_name=$(readlink latest | sed "s/$(printf "%c%02d" E ${current_latest_episode_number})/$(printf "%c%02d" E ${latest_episode_number})/")
+            latest_episode_name=$(readlink ${latest} | sed "s/$(printf "%c%02d" E ${current_latest_episode_number})/$(printf "%c%02d" E ${latest_episode_number})/")
             if [[ ! -f ${latest_episode_name} ]]; then 
                 >&2 echo "error: $([[ offset -eq 1 ]] && echo next || echo previous) episode does not exist"; 
                 exit 1; 
@@ -50,4 +53,4 @@ case $# in
         ;;
 esac
 
-ln -fs ${latest_episode_name} latest
+ln -fs ${latest_episode_name} ${latest}

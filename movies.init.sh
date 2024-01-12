@@ -7,18 +7,21 @@ set -euo pipefail
 zmodload zsh/zutil
 zparseopts {n,-name}:=name_value {u,-url}:=url_value || exit 1
 
+info=".movies/info"
+
 if [[ $# -eq 0 ]] || [[ ${#name_value[@]} -eq 0 ]] || [[ ${#url_value[@]} -eq 0 ]]; then
     echo "usage: init -n name -u url"
     exit 1
 fi
 
-if [[ -f .info ]]; then
+if [[ -d .movies ]]; then
     echo "fatal: movies repository already exists in $PWD/" >&2
     exit 1
 fi
 
-echo "name = ${name_value[2]}" >> .info
-echo "url = ${url_value[2]}" >> .info
-echo "Initialized .info in $(pwd -P)/"
+mkdir .movies
+echo "name = ${name_value[2]}" >> ${info}
+echo "url = ${url_value[2]}" >> ${info}
+echo "Initialized Movies repository in $(pwd -P)/.movies/"
 
 exit 0

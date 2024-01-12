@@ -13,16 +13,17 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-subcommand_found="false"
+subcommand_found=0
 subcommands=(continue download link play)
 if [[ $1 = "init" ]]; then
+    subcommand_found=1
     shift; ${movies_dir}/movies.init.sh "$@"
 else
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then
-            subcommand_found="true"
+            subcommand_found=1
             if [[ ! -f .info ]]; then
-                >&2 echo "fatal: not a movie repository: .info"
+                >&2 echo "fatal: not a movies repository: .info"
                 exit 1
             fi
 
@@ -32,7 +33,7 @@ else
     done
 fi
 
-if [[ ${subcommand_found} == "fasle" ]]; then
+if [[ ${subcommand_found} == 0 ]]; then
     echo "usage: movies continue | download | init | link | play" >&2
     exit 1
 fi

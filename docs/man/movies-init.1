@@ -5,10 +5,12 @@
 movies\-init \- Initialize a movies repository
 .SH SYNOPSIS
 \f[I]movies\f[R] \f[I]init\f[R] [\-n | \-\-name <show\-name>] [\-u |
-\-\-url <link>]
+\-\-url <url>]
 .SH DESCRIPTION
-This command creates an empty movies repository \- basically a .info
-file containing the relevant information.
+This command creates a movies repository \- basically a directory named
+\&.movies with a text file named .info which includes the information
+given to the command.
+Subsequent commands may add more files to the directory.
 .SH OPTIONS
 \-n, \-\-name <show\-name>
 .PD 0
@@ -16,11 +18,11 @@ file containing the relevant information.
 .PD
 \  \  Set the name of the show that is the prefix of all file names.
 .PP
-\-u, \-\-url <link>
+\-u, \-\-url <url>
 .PD 0
 .P
 .PD
-Set the download link to the first episode of the show.
+\  \  Set the download link of the first episode of the show.
 .SH BUGS
 See GitHub Issues: \c
 .UR https://github.com/mehrshad-kh/movies/issues

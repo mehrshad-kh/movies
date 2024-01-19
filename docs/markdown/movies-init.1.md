@@ -6,17 +6,17 @@
 movies-init - Initialize a movies repository
 
 # SYNOPSIS
-_movies_ _init_ [-n | \-\-name \<show-name\>] [-u | \-\-url \<link\>]
+_movies_ _init_ [-n | \-\-name \<show-name\>] [-u | \-\-url \<url\>]
 
 # DESCRIPTION
-This command creates an empty movies repository - basically a .info file containing the relevant information.
+This command creates a movies repository - basically a directory named .movies with a text file named .info which includes the information given to the command. Subsequent commands may add more files to the directory.  
 
 # OPTIONS
 -n, \-\-name \<show-name\>  
 &nbsp; &nbsp; Set the name of the show that is the prefix of all file names.  
 
--u, \-\-url \<link\>  
-&nbsp; &nbsp; Set the download link to the first episode of the show.
+-u, \-\-url \<url\>   
+&nbsp; &nbsp; Set the download link of the first episode of the show.
 
 # BUGS
 

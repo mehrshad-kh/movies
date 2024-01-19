@@ -4,7 +4,7 @@ This is a collection of Zsh scripts I've written to download and play my favorit
 
 ## Documentation
 
-You can view the man pages in [docs](docs).
+Man pages are present in [docs/man](docs/man). You can view them as such: `man ./movies.1`. Markdown sources are also present in [docs/markdown](docs/markdown).
 
 ## Requirements
 

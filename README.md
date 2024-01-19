@@ -1,6 +1,6 @@
 # Movies
 
-This is a collection of scripts I use to download and play my favorite TV shows.  
+This is a collection of Zsh scripts I've written to download and play my favorite TV shows.  
 
 ## Documentation
 

@@ -27,7 +27,7 @@ else
                 exit 1
             fi
 
-            shift; ${movies_dir}/movies.${subcommand}.sh "$@"
+            shift; ${movies_dir}/movies-${subcommand}.sh "$@"
             break
         fi
     done

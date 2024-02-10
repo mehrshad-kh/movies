@@ -17,7 +17,7 @@ subcommand_found=0
 subcommands=(continue download link play)
 if [[ $1 = "init" ]]; then
     subcommand_found=1
-    shift; ${movies_dir}/movies.init.sh "$@"
+    shift; ${movies_dir}/movies-init.sh "$@"
 else
     for subcommand in ${subcommands[@]}; do
         if [[ $1 == ${subcommand} ]]; then

@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-latest=".movies/latest/"
+latest=".movies/latest"
+info=".movies/info"
 
 if [[ $# -eq 1 ]] && [[ $1 =~ "(-n|--next)" ]]; then
 else
@@ -12,7 +13,7 @@ else
 fi
 
 if ! [[ -h ${latest} ]]; then
-    new_episode_link="$(cat .info | grep -E "^url" | cut -d "=" -f 2 | xargs)"
+    new_episode_link="$(cat ${info} | grep -E "^url" | cut -d "=" -f 2 | xargs)"
 else
     last_episode_filename=$(readlink ${latest})
 
@@ -22,10 +23,10 @@ else
 
     new_formatted_episode_number=$(printf "%02d" ${new_episode_number})
 
-    first_episode_link="$(cat .info | grep "^url\s*=" | cut -d "=" -f 2 | xargs)"
+    first_episode_link="$(cat ${info} | grep "^url\s*=" | cut -d "=" -f 2 | xargs)"
     first_episode_filename="$(echo ${first_episode_link} | rev | cut -d "/" -f 1 | rev)"
 
-    new_episode_filename=$(echo ${first_episode_filename} | sed "s/E01/E${new_formatted_episode_number}/")
+    new_episode_filename=$(echo ${first_episode_filename} | sed "s/E\d{2}/E${new_formatted_episode_number}/")
     new_episode_link="$(echo ${first_episode_link} | rev | cut -d "/" -f 2- | rev)/${new_episode_filename}"
 fi
 

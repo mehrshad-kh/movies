@@ -23,7 +23,7 @@ else
         exit 1
     fi
 
-    ffplay ${latest} -fs -autoexit -loglevel warning -ss ${seek_value[2]}
+    ffplay -fs -autoexit -loglevel warning -ss ${seek_value[2]} ${latest} 
 fi
 
 exit 0

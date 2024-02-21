@@ -8,9 +8,9 @@ zparseopts {s,-seek}:=seek_value || exit 1
 latest=".movies/latest"
 
 if [[ ! -h ${latest} ]]; then
-        echo "error: ${latest}: no such file" >&2
-        echo "Have you run \`movies link\'?" >&2
-        exit 1
+    echo "error: ${latest}: no such file" >&2
+    echo "Have you run \`movies link\'?" >&2
+    exit 1
 fi
 
 if [[ $# -eq 0 ]]; then
@@ -23,7 +23,7 @@ else
         exit 1
     fi
 
-    ffplay ${latest} -fs -autoexit -ss ${seek_value[2]}
+    ffplay ${latest} -fs -autoexit -loglevel warning -ss ${seek_value[2]}
 fi
 
 exit 0

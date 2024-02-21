@@ -10,7 +10,7 @@ zparseopts {n,-name}:=name_value {u,-url}:=url_value || exit 1
 info=".movies/info"
 
 if [[ $# -eq 0 ]] || [[ ${#name_value[@]} -eq 0 ]] || [[ ${#url_value[@]} -eq 0 ]]; then
-    echo "usage: init -n name -u url"
+    echo "movies init [-n | --name show-name] [-u | --url url]"
     exit 1
 fi
 

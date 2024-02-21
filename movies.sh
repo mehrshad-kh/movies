@@ -5,7 +5,7 @@
 # -o pipefail   exit if any portion of a pipe fails
 set -euo pipefail
 
-function echo_help
+function printHelp
 {
     echo "usage: movies continue | download | init | link | play"
     echo "Consult the man page for further details."
@@ -15,7 +15,7 @@ function echo_help
 movies_dir=${$(readlink -f ${0})%/*}
 
 if [[ $# -eq 0 ]]; then
-    echo_help
+    printHelp
     exit 1
 fi
 
@@ -40,7 +40,7 @@ else
 fi
 
 if [[ ${subcommand_found} == 0 ]]; then
-    echo_help
+    printHelp
     exit 1
 fi
 

@@ -8,7 +8,16 @@ set -euo pipefail
 function printHelp
 {
     echo "usage: movies continue | download | init | link | play"
-    echo "Consult the man page for further details."
+    echo "Consult the man pages for further details."
+    echo
+    echo "Summary:"
+    echo "\tBegin with \`movies init --name <name> --url <url>'"
+    echo "\tThen, download the first episode with \`movies download --next'"
+    echo "\tRun \`movies link --first'"
+    echo "\tPlay with \`movies play'"
+    echo
+    echo "\tDownload subsequent episodes with \`movies download --next'"
+    echo "\tMake sure to run \`movies link --next' after each download."
 }
 
 # This is where actual scripts are located.

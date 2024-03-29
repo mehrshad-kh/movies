@@ -5,7 +5,7 @@
 # -o pipefail   exit if any portion of a pipe fails
 set -euo pipefail
 
-function printHelp
+function printHelp ()
 {
     echo "usage: movies continue | download | init | link | play"
     echo "Consult the man pages for further details."
@@ -17,7 +17,6 @@ function printHelp
     echo "\tPlay with \`movies play'"
     echo
     echo "\tDownload subsequent episodes with \`movies download --next'"
-    echo "\tMake sure to run \`movies link --next' after each download."
 }
 
 # This is where actual scripts are located.

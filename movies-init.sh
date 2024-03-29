@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# Remove if not necessary.
-# set -P
 set -euo pipefail
 
 zmodload zsh/zutil

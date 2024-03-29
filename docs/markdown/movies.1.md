@@ -14,8 +14,7 @@ _movies_ \<command\> [\<args\>]
 
 Get started by running **movies init** with the required options in an empty directory.
 Proceed with **movies download** to download the first episode.
-After each download, you must run **movies link**.
-Eventually, **movies play**.
+Eventually, run **movies play**.
 
 # BUGS
 

@@ -6,7 +6,7 @@ latest=".movies/latest"
 info=".movies/info"
 
 series_name="$(cat ${info} \
-    | grep -E "^name\s*=" \
+    | grep -E "^name =" \
     | cut -d "=" -f 2 \
     | xargs)"
 episode_name=$(ls ${series_name}* \

@@ -29,7 +29,7 @@ else
     new_formatted_episode_number=$(printf "%02d" ${new_episode_number})
 
     first_episode_link="$(cat ${info} \
-        | grep -E "^url\s*=" \
+        | grep -E "^url =" \
         | cut -d "=" -f 2 \
         | xargs)"
     first_episode_filename="$(echo ${first_episode_link} \

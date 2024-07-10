@@ -8,7 +8,7 @@ zparseopts {s,-seek}:=seek_value || exit 1
 latest=".movies/latest"
 
 # -sn: Disable subtitles.
-ffplay_options='-fs -autoexit -loglevel warning'
+ffplay_options='-fs -autoexit -loglevel warning -stats'
 
 if [[ ! -h ${latest} ]]; then
     echo "error: ${latest}: no such file" >&2
@@ -17,6 +17,8 @@ if [[ ! -h ${latest} ]]; then
 fi
 
 if [[ $# -eq 0 ]]; then
+    episode_filename=${$(readlink ${latest})#../}
+    echo "playing ${episode_filename}..."
     eval "ffplay ${latest} ${ffplay_options}"
 elif [[ ${#seek_value[@]} -eq 0 ]]; then
     >&2 echo "usage: movies play [ -s | --seek ] <seconds>"

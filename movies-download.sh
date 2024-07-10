@@ -7,8 +7,7 @@ info=".movies/info"
 
 if [[ $# -eq 1 ]] && [[ $1 =~ "(-n|--next)" ]]; then
 else
-    >&2 echo "[invalid usage]"
-    echo "usage: movies download [-n, --next]"
+    >&2 echo "usage: movies download [-n, --next]"
     exit 1
 fi
 
@@ -53,8 +52,7 @@ fi
 # -L, --location: Follow the request onto the last location.
 # -O, --remote-name: Write output to a local file named like the remote file we get.
 # -f, --fail: Fail silently.
-echo "*** new_episode_link:"
-echo ${new_episode_link}
+echo "download begins for: ${new_episode_filename}"
 curl -C - -L -O -f --retry-all-errors --retry-max-time 30 ${new_episode_link}
 
 movies link --next

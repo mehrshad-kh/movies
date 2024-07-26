@@ -12,7 +12,7 @@ ffplay_options='-fs -autoexit -loglevel warning -stats'
 
 if [[ ! -h ${latest} ]]; then
     echo "error: ${latest}: no such file" >&2
-    echo "Have you run \`movies link\'?" >&2
+    echo "Have you run \`movies link'?" >&2
     exit 1
 fi
 
